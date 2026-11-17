@@ -1,0 +1,305 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-navy: #020a3b;
+  --color-ink: #060f45;
+  --color-magenta: #be2074;
+  --color-magenta-soft: #d92c86;
+  --color-purple: #961e96;
+  --color-crimson: #d02840;
+  --color-lilac: #aeb4d8;
+  --font-sans: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-navy);
+  background-image:
+    radial-gradient(circle at 12% -10%, rgba(150, 30, 150, 0.32), transparent 55%),
+    radial-gradient(circle at 92% 4%, rgba(190, 32, 116, 0.18), transparent 48%),
+    radial-gradient(circle at 50% 120%, rgba(208, 40, 64, 0.12), transparent 60%);
+  background-attachment: fixed;
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(190, 32, 116, 0.5);
+}
+
+@layer components {
+  /* --- superficies --- */
+  .card {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    backdrop-filter: blur(6px);
+  }
+
+  .card-tight {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+  }
+
+  .hairline {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* --- marca --- */
+  .grad-brand {
+    background-image: linear-gradient(120deg, #d02840, #be2074 60%, #961e96);
+  }
+
+  .grad-text {
+    background-image: linear-gradient(95deg, #d9518f, #be2074 45%, #b84bb0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ring-glow {
+    box-shadow:
+      0 0 0 1px rgba(190, 32, 116, 0.35),
+      0 0 70px rgba(190, 32, 116, 0.28);
+  }
+
+  /* --- controles --- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition:
+      transform 140ms ease,
+      background-color 140ms ease,
+      opacity 140ms ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-primary {
+    background-image: linear-gradient(100deg, #d02840, #be2074 70%);
+    color: #fff;
+    box-shadow: 0 10px 40px rgba(190, 32, 116, 0.3);
+  }
+
+  .btn-primary:not(:disabled):hover {
+    filter: brightness(1.08);
+  }
+
+  .btn-ghost {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .btn-ghost:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 0.7rem 0.9rem;
+    color: #fff;
+    font-size: 0.875rem;
+    outline: none;
+    transition:
+      border-color 140ms ease,
+      box-shadow 140ms ease;
+  }
+
+  .input::placeholder {
+    color: rgba(174, 180, 216, 0.55);
+  }
+
+  .input:focus {
+    border-color: rgba(190, 32, 116, 0.7);
+    box-shadow: 0 0 0 4px rgba(190, 32, 116, 0.15);
+  }
+
+  .label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-lilac);
+    margin-bottom: 0.45rem;
+  }
+
+  /* --- píldoras --- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  .pill-ticket {
+    background: rgba(190, 32, 116, 0.22);
+    color: #ffb3d6;
+    border: 1px solid rgba(190, 32, 116, 0.45);
+  }
+
+  .pill-warn {
+    background: rgba(245, 158, 11, 0.14);
+    color: #fcd34d;
+    border: 1px solid rgba(245, 158, 11, 0.35);
+  }
+
+  .pill-danger {
+    background: rgba(208, 40, 64, 0.16);
+    color: #ff9aa8;
+    border: 1px solid rgba(208, 40, 64, 0.4);
+  }
+
+  .pill-ok {
+    background: rgba(52, 211, 153, 0.12);
+    color: #6ee7b7;
+    border: 1px solid rgba(52, 211, 153, 0.32);
+  }
+
+  /* --- tabla --- */
+  .roster-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background-color 120ms ease;
+  }
+
+  .roster-row:hover {
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  /* Escenario del sorteo: dos columnas solo en horizontal ancho. */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .reel-shell {
+    width: 100%;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 1024px) and (orientation: landscape) {
+    .stage-grid {
+      grid-template-columns: minmax(0, 1fr) 320px;
+    }
+  }
+
+  @media (orientation: portrait) {
+    .reel-shell {
+      max-width: 48rem;
+    }
+
+    .stage-grid {
+      align-content: center;
+    }
+  }
+}
+
+/* --- animaciones --- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fade-up 320ms ease both;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(190, 32, 116, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(190, 32, 116, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(190, 32, 116, 0);
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+/* máscara del reel */
+.reel-mask {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 12%,
+    #000 34%,
+    #000 66%,
+    rgba(0, 0, 0, 0.2) 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 12%,
+    #000 34%,
+    #000 66%,
+    rgba(0, 0, 0, 0.2) 88%,
+    transparent 100%
+  );
+}
